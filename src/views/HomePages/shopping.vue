@@ -1,14 +1,18 @@
 <template>
   <div class="text-white">
-    <carousel/>
+    <carousel />
     <loading :active.sync="isLoading" loader="dots" :can-cancel="true" :is-full-page="fullPage"></loading>
-    <shoppingCart/>
-    <div class="container my-5">
+    <shoppingCart />
+    <div class="container mt-5">
       <div class="row">
         <div class="col-md-3">
           <ol class="breadcrumb" style="background:none;">
-            <li class="breadcrumb-item"><router-link to="/" class="text-white">首頁</router-link></li>
-            <li class="breadcrumb-item"><router-link to="/shopping" class="text-white">購物專區</router-link></li>
+            <li class="breadcrumb-item">
+              <router-link to="/" class="text-white">首頁</router-link>
+            </li>
+            <li class="breadcrumb-item">
+              <router-link to="/shopping" class="text-white">購物專區</router-link>
+            </li>
           </ol>
         </div>
         <div class="col-md-6 text-center">
@@ -16,55 +20,51 @@
         </div>
         <div class="col-md-3">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" 
-            v-model="filterData"
-            placeholder="請輸入商品名稱" aria-label="Recipient's username"
+            <input type="text" class="form-control" v-model="filterData" placeholder="請輸入商品名稱" aria-label="Recipient's username"
               aria-describedby="button-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-              @click="filterTitle"><i class="fas fa-search"></i></button>
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="filterTitle"><i class="fas fa-search"></i></button>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-2">
-          <div class="text-center side-list" @click="filterPro('')">全部商品</div>
-          <div class="text-center side-list" @click="filterPro('溫馨')">溫馨</div>
-          <div class="text-center side-list" @click="filterPro('可愛')">可愛</div>
-          <div class="text-center side-list" @click="filterPro('親子')">親子</div>
-          <div class="text-center side-list" @click="filterPro('俏皮')">俏皮</div>
-        </div>
-        <div class="col-md-10 text-dark">
-          <div class="row my-4">
-            <div class="col-md-4 mb-4" v-for="(item, index) in filterProducts" :key="index">
-              <div class="card border-0 shadow-sm">
-                <div class="point" style="height: 250px; background-size: cover; background-position: center" 
-                @click="goDetail(item.id)"
+    </div>
+    <div class="row mx-5">
+      <div class="col-md-2">
+        <div class="text-center side-list" @click="filterPro('')">全部商品</div>
+        <div class="text-center side-list" @click="filterPro('溫馨')">溫馨</div>
+        <div class="text-center side-list" @click="filterPro('可愛')">可愛</div>
+        <div class="text-center side-list" @click="filterPro('親子')">親子</div>
+        <div class="text-center side-list" @click="filterPro('俏皮')">俏皮</div>
+      </div>
+      <div class="col-md-10 text-dark">
+        <div class="row my-4">
+          <div class="col-md-4 mb-4" v-for="(item, index) in filterProducts" :key="index">
+            <div class="card border-0 shadow-sm">
+              <div class="point" style="height: 250px; background-size: cover; background-position: center" @click="goDetail(item.id)"
                 :style="{backgroundImage:`url(${item.imageUrl})`}">
+              </div>
+              <div class="card-body">
+                <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
+                <h5 class="card-title">
+                  <h5 class="text-dark">{{ item.title }}</h5>
+                </h5>
+                <p class="card-text">{{ item.content }}</p>
+                <div class="d-flex justify-content-between align-items-baseline">
+                  <!-- <div class="h5">2,800 元</div> -->
+                  <del class="h6">原價 {{ item.origin_price }} 元</del>
+                  <div class="h5">特惠 <span class="text-danger">{{ item.price }}</span> 元</div>
                 </div>
-                <div class="card-body">
-                  <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
-                  <h5 class="card-title">
-                    <h5  class="text-dark">{{ item.title }}</h5>
-                  </h5>
-                  <p class="card-text">{{ item.content }}</p>
-                  <div class="d-flex justify-content-between align-items-baseline">
-                    <!-- <div class="h5">2,800 元</div> -->
-                    <del class="h6">原價 {{ item.origin_price }} 元</del>
-                    <div class="h5">特惠 <span class="text-danger">{{ item.price }}</span> 元</div>
-                  </div>
-                </div>
-                <div class="card-footer d-flex">
-                  <button type="button" class="btn btn-outline-secondary btn-sm" @click="goDetail(item.id)">
-                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
-                    查看更多
-                  </button>
-                  <button type="button" class="btn btn-outline-info btn-sm ml-auto" @click="addtoCart(item)">
-                    <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
-                    加到購物車
-                  </button>
-                </div>
+              </div>
+              <div class="card-footer d-flex">
+                <button type="button" class="btn btn-outline-secondary btn-sm" @click="goDetail(item.id)">
+                  <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                  查看更多
+                </button>
+                <button type="button" class="btn btn-outline-info btn-sm ml-auto" @click="addtoCart(item)">
+                  <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
+                  加到購物車
+                </button>
               </div>
             </div>
           </div>
@@ -79,14 +79,14 @@
   import carousel from '../../components/carousel.vue';
   import shoppingCart from '../../components/shoppingCart.vue';
   export default {
-    components:{
+    components: {
       carousel,
       shoppingCart,
     },
     data() {
       return {
         products: [],
-        filterData:'',
+        filterData: '',
         filterProducts: [],
         pagination: {},
         tempProduct: {},
@@ -150,15 +150,15 @@
           vm.filterProducts = newArray;
         }
       },
-      filterTitle(){
+      filterTitle() {
         const vm = this;
-        vm.filterProducts = vm.products.filter(function(product){
-          
+        vm.filterProducts = vm.products.filter(function (product) {
+
           return product.title.indexOf(vm.filterData) > -1;
         });
         vm.filterData = '';
       },
-      goDetail(id){
+      goDetail(id) {
         this.$router.push(`/detail/${id}`);
       }
     },
@@ -193,7 +193,8 @@
     border-bottom: rgb(9, 76, 163) solid 5px;
     cursor: pointer;
   }
-  .point{
+
+  .point {
     cursor: pointer;
   }
 </style>

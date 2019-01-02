@@ -17,7 +17,7 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/order">
+              <router-link class="nav-link" to="/shopping">
                 追蹤訂單資訊
               </router-link>
             </li>
