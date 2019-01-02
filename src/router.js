@@ -8,6 +8,12 @@ import CustomerOrders from '@/views/dashboard/CustomerOrders.vue'
 import Coupon from '@/views/dashboard/Coupon.vue';
 import OrderList from '@/views/dashboard/OrderList.vue';
 import orderCheckout from '@/views/dashboard/CustomerCheckout.vue';
+import Homepage from '@/views/HomePages/Homepage.vue';
+import shopping from '@/views/HomePages/shopping.vue';
+import detail from '@/views/HomePages/detail.vue';
+import checkout from '@/views/HomePages/checkout.vue';
+import order from '@/views/HomePages/orderList.vue';
+import pay from '@/views/HomePages/pay.vue';
 
 
 
@@ -17,12 +23,43 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      component: Home,
+      children:[
+        {
+          path:'',
+          name:'HomePage',
+          component:Homepage,
+        },
+        {
+          path:'shopping',
+          name:'shopping',
+          component:shopping,
+        },
+        {
+          path:'detail/:productId',
+          name:'detail',
+          component:detail,
+        },
+        {
+          path:'checkout',
+          name:'checkout',
+          component:checkout,
+        },
+        {
+          path:'order',
+          name:'order',
+          component:order,
+        },
+        {
+          path:'pay/:orderId',
+          name:'pay',
+          component:pay,
+        },
+      ],
     },
     {
       path:'*',
-      redirect:'login',
+      redirect:'/',
     },
     {
       path:'/login',

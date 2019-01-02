@@ -1,5 +1,6 @@
 <template>
   <div>
+    <navbar/>
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
@@ -20,7 +21,11 @@
 </template>
 
 <script>
+  import navbar from '../components/homeNavBar.vue';
   export default {
+    components:{
+      navbar,
+    },
     name: "login",
     data() {
       return {
