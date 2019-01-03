@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="row mx-5">
+    <div class="row mx-sm-5">
       <div class="col-md-2">
         <div class="text-center side-list" @click="filterPro('')">全部商品</div>
         <div class="text-center side-list" @click="filterPro('溫馨')">溫馨</div>
