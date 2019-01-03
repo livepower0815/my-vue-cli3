@@ -57,8 +57,8 @@
           </div>
           <div class="alert alert-info" role="alert">
             可輸入優惠碼<br>
-            1.super <br>
-            2.okokcode <br>
+            1.super<br>
+            2.okokcode<br>
             3.okCode
           </div>
         </div>
