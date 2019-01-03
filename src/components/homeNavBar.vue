@@ -16,11 +16,6 @@
                 商品選購
               </router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/shopping">
-                追蹤訂單資訊
-              </router-link>
-            </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <router-link class="btn btn-outline-info my-2 my-sm-0" to="/login">

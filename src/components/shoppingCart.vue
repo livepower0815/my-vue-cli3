@@ -31,7 +31,7 @@
         if(vm.cartNum == 0){
           alert('購物車是空的喔 請選購商品吧')
         }else{
-          this.$router.push('/checkout');
+          this.$router.push('/cartList');
         }
         
       },

@@ -25,10 +25,10 @@
         <div class="col-md-7">
           <img :src="product.imageUrl" class="img-fluid rounded" alt="img">
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 bg-blue">
           <h3>{{product.title}} <div class="pro-title text-center ml-3"> {{product.category}}</div>
           </h3>
-          <h5 class="my-4">{{product.content}}</h5>
+          <h5 class="my-4 mylh">{{product.content}}</h5>
           <p class="text-right text-white-50">--{{product.description}}</p>
           <div class="d-flex justify-content-between align-items-baseline mb-3">
             <!-- <div class="h5">2,800 元</div> -->
@@ -105,5 +105,13 @@
     border-radius: 10px;
     line-height: 40px;
     color: rgb(66, 80, 71);
+  }
+  .bg-blue{
+    background: #36679b;
+    border-radius: 5px;
+    padding-top: 30px;
+  }
+  .mylh{
+    line-height: 40px;
   }
 </style>

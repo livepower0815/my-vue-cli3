@@ -23,7 +23,7 @@
             <input type="text" class="form-control" v-model="filterData" placeholder="請輸入商品名稱" aria-label="Recipient's username"
               aria-describedby="button-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="filterTitle"><i class="fas fa-search"></i></button>
+              <button class="btn btn-outline-light" type="button" id="button-addon2" @click="filterTitle"><i class="fas fa-search"></i></button>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="row my-4">
           <div class="col-md-4 mb-4" v-for="(item, index) in filterProducts" :key="index">
             <div class="card border-0 shadow-sm">
-              <div class="point" style="height: 250px; background-size: cover; background-position: center" @click="goDetail(item.id)"
+              <div class="point my-img" @click="goDetail(item.id)"
                 :style="{backgroundImage:`url(${item.imageUrl})`}">
               </div>
               <div class="card-body">
@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div class="card-footer d-flex">
-                <button type="button" class="btn btn-outline-secondary btn-sm" @click="goDetail(item.id)">
+                <button type="button" class="btn btn-outline-primary btn-sm" @click="goDetail(item.id)">
                   <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
                   查看更多
                 </button>
@@ -181,20 +181,31 @@
   }
 
   .side-list {
-    border-bottom: rgb(38, 180, 145) solid 5px;
-    height: 60px;
-    line-height: 60px;
+    background: #36679b;
+    height: 40px;
+    line-height: 40px;
     font-size: 20px;
     /* width: 100px; */
     transition: all 0.4s;
+    margin: 20px 0;
+    border-radius: 20px;
   }
 
   .side-list:hover {
-    border-bottom: rgb(9, 76, 163) solid 5px;
     cursor: pointer;
+    background: #2ba595;
   }
 
   .point {
     cursor: pointer;
+  }
+  .my-img {
+    background-size: cover; 
+    background-position: center center;
+    height: 200px;
+    transition: all 0.8s;
+  }
+  .my-img:hover {
+    height: 300px;
   }
 </style>

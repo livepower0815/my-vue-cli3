@@ -1,22 +1,19 @@
 <template>
-  <div class="bg-white">
+  <div id="bg-gray">
     <loading :active.sync="isLoading" loader="dots" :can-cancel="true" :is-full-page="fullPage"></loading>
     <div class="container py-5">
       <div class="row">
-        <div class="col-md-12 text-center">
-          購物車結帳頁面
+        <div class="col-md-4 text-center ">
+          <span class="h4 no_title">1.填寫訂單資料</span>
         </div>
-        <div class="col-md-4 text-center">
-          1.填寫訂單資料
+        <div class="col-md-4 text-center ">
+          <span class="h4 my_title" v-if="!order.is_paid">2.金流付款</span>
+          <span class="h4 no_title" v-else>2.金流付款</span>
         </div>
-        <div class="col-md-4 text-center">
-          2.金流付款
+        <div class="col-md-4 text-center ">
+          <span class="h4 no_title" v-if="!order.is_paid">3.訂單已成立！</span>
+          <span class="h4 ok_title" v-else>3.訂單已成立！</span>
         </div>
-        <div class="col-md-4 text-center">
-          3.訂單已成立！
-        </div>
-
-
       </div>
       <div class="my-5 row justify-content-center">
         <form class="col-md-6">
@@ -71,6 +68,9 @@
           <div class="text-right" v-if="order.is_paid === false">
             <button class="btn btn-info" @click="checkout">確認付款去</button>
           </div>
+          <div class="text-center" v-else>
+            <button class="btn btn-primary" @click="goHome">回到首頁</button>
+          </div>
         </form>
       </div>
     </div>
@@ -78,7 +78,6 @@
 </template>
 
 <script>
-
   export default {
     data() {
       return {
@@ -107,6 +106,9 @@
           this.getOrder();
         });
       },
+      goHome(){
+        this.$router.push('/');
+      }
     },
     created() {
       this.orderId = this.$route.params.orderId;
@@ -116,5 +118,33 @@
 </script>
 
 <style lang="scss" scoped>
+  #bg-gray {
+    background: rgb(243, 243, 243);
+  }
 
+  .my_title {
+    color: white;
+    background: #36679b;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 30px;
+  }
+
+  .ok_title {
+    color: white;
+    background: #1fa34b;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 30px;
+  }
+
+
+  .no_title {
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 30px;
+  }
 </style>

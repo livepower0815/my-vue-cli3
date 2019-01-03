@@ -14,6 +14,7 @@ import detail from '@/views/HomePages/detail.vue';
 import checkout from '@/views/HomePages/checkout.vue';
 import order from '@/views/HomePages/orderList.vue';
 import pay from '@/views/HomePages/pay.vue';
+import cartList from '@/views/HomePages/cartList.vue';
 
 
 
@@ -54,6 +55,11 @@ export default new Router({
           path:'pay/:orderId',
           name:'pay',
           component:pay,
+        },
+        {
+          path:'cartList',
+          name:'cartList',
+          component:cartList,
         },
       ],
     },

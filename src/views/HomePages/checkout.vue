@@ -1,40 +1,32 @@
 <template>
-  <div class="bg-white">
+  <div id="bg-gray">
     <loading :active.sync="isLoading" loader="dots" :can-cancel="true" :is-full-page="fullPage"></loading>
     <div class="container py-5">
       <div class="row">
-        <div class="col-md-12 text-center">
-          購物車結帳頁面
+        <div class="col-md-4 text-center ">
+          <span class="h4 my_title">1.填寫訂單資料</span>
         </div>
-        <div class="col-md-4 text-center">
-          1.填寫訂單資料
+        <div class="col-md-4 text-center ">
+          <span class="h4 no_title">2.金流付款</span>
         </div>
-        <div class="col-md-4 text-center">
-          2.金流付款
+        <div class="col-md-4 text-center ">
+          <span class="h4 no_title">3.訂單已成立！</span>
         </div>
-        <div class="col-md-4 text-center">
-          3.訂單已成立！
-        </div>
-
-
       </div>
-      <!-- 購物車列表 -->
-      <div class="row d-flex justify-content-center my-5">
+
+
+      <div class="row mt-5">
+
+        <!-- 購物車列表 -->
         <div class="col-md-6">
-          <table class="table">
-            <thead>
-              <th></th>
+          <table class="table my_list">
+            <thead class="bg-secondary text-white">
               <th>品名</th>
               <th>數量</th>
-              <th>單價</th>
+              <th class="text-right">單價</th>
             </thead>
             <tbody>
               <tr v-for="(item, index) in cart.carts" :key="index">
-                <td class="align-middle">
-                  <button type="button" class="btn btn-outline-danger btn-sm" @click="removeCart(item.id)">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                </td>
                 <td class="align-middle">
                   {{item.product.title}}
                   <div class="text-success" v-if="item.coupon">
@@ -42,34 +34,25 @@
                   </div>
                 </td>
                 <td class="align-middle"> {{item.qty}} / {{item.product.unit}} </td>
-                <td class="align-middle text-right"> {{item.final_total | NumCeiling}} </td>
+                <td class="align-middle text-right"> {{item.final_total | NumCeiling |currency}} </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="3" class="text-right">總計</td>
-                <td class="text-right"> {{cart.total}} </td>
+                <td colspan="2" class="text-right">總計</td>
+                <td class="text-right"> {{cart.total | NumCeiling |currency}} </td>
               </tr>
               <tr v-if="cart.final_total !== cart.total">
-                <td colspan="3" class="text-right text-success">折扣價</td>
-                <td class="text-right text-success"> {{cart.final_total}} </td>
+                <td colspan="2" class="text-right text-success">折扣價</td>
+                <td class="text-right text-success"> {{cart.final_total | NumCeiling |currency}} </td>
               </tr>
             </tfoot>
           </table>
-          <div class="input-group mb-3 input-group-sm">
-            <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" @click="addCouponCode">
-                套用優惠碼
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- 建立訂單 -->
-      <div class="my-5 row justify-content-center">
-        <form class="col-md-6" @submit.prevent="createOrder">
+        </div>
+
+        <!-- 建立訂單 -->
+        <form class="col-md-6 my_box" @submit.prevent="createOrder">
           <div class="form-group">
             <label for="useremail">Email</label>
             <input type="email" class="form-control" name="email" id="useremail" :class="{'is-invalid':errors.has('email')}"
@@ -107,6 +90,7 @@
           </div>
         </form>
       </div>
+
     </div>
   </div>
 </template>
@@ -131,16 +115,6 @@
       };
     },
     methods: {
-      removeCart(id) {
-        const api = `${process.env.VUE_APP_APIPATH}/api/livepower0815/cart/${id}`;
-        const vm = this;
-        vm.isLoading = true;
-        this.$http.delete(api).then((res) => {
-          this.getCart();
-          vm.$bus.$emit('messsagePush', res.data.message, 'success');
-          vm.isLoading = false;
-        });
-      },
       getCart() {
         const api = `${process.env.VUE_APP_APIPATH}/api/livepower0815/cart`;
         const vm = this;
@@ -197,5 +171,34 @@
 </script>
 
 <style lang="scss" scoped>
+  #bg-gray {
+    background: rgb(243, 243, 243);
+  }
 
+  .my_box {
+    background: #36679b;
+    padding: 20px 20px;
+    border-radius: 3px;
+    color: white;
+  }
+
+  .my_list {
+    background: rgb(230, 230, 230);
+  }
+
+  .my_title {
+    color: white;
+    background: #1aac98;
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 30px;
+  }
+
+  .no_title {
+    border-radius: 4px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 30px;
+  }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-dark">
+  <div class="">
     <!-- navbar元件 -->
     <navbar class="sticky-top" />
     <AlertMessage/>
+    <div class="bg-gray"></div>
     <main>
-      <!-- carousel元件 -->
 
       <!-- 分頁router -->
       <router-view></router-view>
@@ -74,5 +74,16 @@
   div.row {
     margin: 0px;
   }
+  .bg-gray{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #343a40;
+    z-index: -1100;
+
+  }
+  
 
 </style>

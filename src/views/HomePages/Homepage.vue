@@ -1,15 +1,21 @@
 <template>
   <div class="text-white">
+    <img class="bg-img w-100 d-none d-md-block" src="https://images.unsplash.com/photo-1542834759-197152b49c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80"
+      alt="">
     <carousel />
-    <hr class="featurette-divider">
-
-    <div class="container">
-      <div class="text-center mb-5">
-        <h3 class="my-4">婚紗,婚紗攝影,寶貝拍攝</h3>
-        <p>猴寶自助婚紗提供「婚紗」、「婚紗攝影」、「拍婚紗」服務，是您想不到的全新婚紗攝影服務，</p>
-        <p>拍婚紗不再擔心加價，全新婚紗禮服任您挑選，無隱形消費，站在您的角度，客製規劃您的方案，</p>
-        <p>打造一個禮服數量超過婚紗店規模，但收費親民，高CP值的自助婚紗工作室。</p>
+    <div class="gray-bg">
+      <div class="container pt-5">
+        <div class="text-center mb-5">
+          <h3 class="my-4">婚紗,婚紗攝影,寶貝拍攝</h3>
+          <p>猴寶自助婚紗提供「婚紗」、「婚紗攝影」、「拍婚紗」服務，是您想不到的全新婚紗攝影服務，</p>
+          <p>拍婚紗不再擔心加價，全新婚紗禮服任您挑選，無隱形消費，站在您的角度，客製規劃您的方案，</p>
+          <p>打造一個禮服數量超過婚紗店規模，但收費親民，高CP值的自助婚紗工作室。</p>
+        </div>
+        <hr class="featurette-divider">
       </div>
+    </div>
+    <div class="container">
+
       <div class="marketing">
         <div class="row">
           <div class="col-12">
@@ -21,7 +27,8 @@
                   完全不必忍痛刪照片，不用擔心多挑照片多加價
                   拍攝風格特色由您決定，拍出獨一無二的個人化婚紗照</p>
                 <div class="alert alert-info" role="alert">
-                  轉職大成功優惠 全館75折 優惠代碼: okokcode
+                  <p>轉職大成功優惠 全館75折</p>
+                  <p>優惠代碼: <span class="badge badge-danger big">okokcode</span></p>
                 </div>
               </div><!-- /.col-lg-4 -->
               <div class="col-lg-4  rotate">
@@ -30,8 +37,9 @@
                 <p>婚紗攝影包套方案包含手工白紗及晚禮服，
                   完全不用加價挑選，不必擔心隱形消費
                   近1000件婚紗晚禮服可隨意挑選，想到的我們都有！</p>
-                <div class="alert alert-info" role="alert">
-                  超級下殺 全館9折 優惠代碼: super
+                <div class="alert alert-info" role="alert"> 
+                  <p>超級下殺 全館9折</p>
+                  <p>優惠代碼: <span class="badge badge-danger big">super</span></p>
                 </div>
               </div><!-- /.col-lg-4 -->
               <div class="col-lg-4 rotate">
@@ -41,7 +49,8 @@
                   每套婚紗禮服都有不同的造型喔！
                   讓你不用擔心風吹日曬下拍照會脫妝，造型師幫你隨時注意造型</p>
                 <div class="alert alert-info" role="alert">
-                  年終加碼不過期 全館75折 優惠代碼: okCode
+                  <p>年終加碼不過期 全館75折</p>
+                  <p>優惠代碼: <span class="badge badge-danger big">okCode</span></p>
                 </div>
               </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
@@ -198,5 +207,19 @@
     color: rgb(15, 172, 172);
     cursor: pointer;
     font-size: 30px;
+  }
+
+  .bg-img {
+    z-index: -1000;
+    position: fixed;
+    left: 0;
+    top: -20%;
+    filter: blur(3px)grayscale(50%);
+  }
+  .gray-bg{
+    background: #36679b;
+  }
+  .big{
+    font-size: 16px;
   }
 </style>
