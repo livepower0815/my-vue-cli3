@@ -64,7 +64,7 @@
             <img class="img-fluid rounded" src="https://images.unsplash.com/photo-1524492188898-7e0f39d0ec03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
               alt="img">
           </div>
-          <div class="col-md-6 px-5">
+          <div class="col-md-6 px-sm-5">
             <div class="text-center ">
               <h3 class="my-4">不要再錯過親子的時光</h3>
               <p class="lineH">
@@ -85,7 +85,7 @@
             <img class="img-fluid rounded" src="https://images.unsplash.com/photo-1475178278683-8c225ae5ec3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
               alt="img">
           </div>
-          <div class="col-md-6 px-5">
+          <div class="col-md-6 px-sm-5">
             <div class="text-center ">
               <h3 class="my-4">紀錄孩子俏皮可愛的瞬間</h3>
               <p class="lineH">
@@ -108,7 +108,7 @@
             <img class="img-fluid rounded" src="https://images.unsplash.com/photo-1538078390103-a28006279daf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
               alt="img">
           </div>
-          <div class="col-md-6 px-5">
+          <div class="col-md-6 px-sm-5">
             <div class="text-center ">
               <h3 class="my-4">新年新希望 新春紅包大放送</h3>
               <p class="lineH">
