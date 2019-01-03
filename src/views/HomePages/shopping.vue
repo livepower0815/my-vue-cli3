@@ -40,7 +40,7 @@
       <div class="col-md-10 text-dark">
         <div class="row my-4">
           <div class="col-md-4 mb-4" v-for="(item, index) in filterProducts" :key="index">
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm mycard">
               <div class="point my-img" @click="goDetail(item.id)"
                 :style="{backgroundImage:`url(${item.imageUrl})`}">
               </div>
@@ -203,9 +203,9 @@
     background-size: cover; 
     background-position: center center;
     height: 200px;
-    transition: all 0.8s;
+    transition: all 0.5s;
   }
   .my-img:hover {
-    height: 300px;
+    height: 212px;
   }
 </style>
