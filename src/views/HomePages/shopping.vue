@@ -41,8 +41,9 @@
         <div class="row my-4">
           <div class="col-md-4 mb-4" v-for="(item, index) in filterProducts" :key="index">
             <div class="card border-0 shadow-sm mycard">
-              <div class="point my-img" @click="goDetail(item.id)"
-                :style="{backgroundImage:`url(${item.imageUrl})`}">
+              <div class="imgContainer">
+                <div class="point my-img" @click="goDetail(item.id)" :style="{backgroundImage:`url(${item.imageUrl})`}">
+                </div>
               </div>
               <div class="card-body">
                 <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
@@ -181,7 +182,7 @@
   }
 
   .side-list {
-    background: #36679b;
+    background: #4380c0;
     height: 40px;
     line-height: 40px;
     font-size: 20px;
@@ -199,13 +200,21 @@
   .point {
     cursor: pointer;
   }
+
   .my-img {
-    background-size: cover; 
+    background-size: cover;
     background-position: center center;
     height: 200px;
-    transition: all 0.5s;
+    transition: all 0.8s;
   }
+
   .my-img:hover {
-    height: 212px;
+    height: 200px;
+    transform: scale(1.2)
   }
+  .imgContainer{
+    height: 200px;
+    overflow: hidden;
+  }
+
 </style>
