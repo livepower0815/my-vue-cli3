@@ -72,12 +72,27 @@
             <button class="btn btn-primary" @click="goHome">回到首頁</button>
           </div>
         </form>
+        <form class="d-none" name="Spgateway" method="post" action="https://ccore.spgateway.com/MPG/mpg_gateway">
+          MerchantID,商店代號：<input type='text' name='MerchantID' value='MS15725412'><br>
+          RespondType,回傳格式：<input type='text' name='RespondType' value='JSON'><br>
+          CheckValue,檢查碼：<input type='text' name='CheckValue' :value='checkV'><br>
+          TimeStamp,時間戳記：<input type='text' name='TimeStamp' :value='order.create_at'><br>
+          Version,串接程式版本：<input type='text' name='Version' value='1.2'><br>
+          MerchantOrderNo,商店訂單編號：<input type='text' name='MerchantOrderNo' :value='sliceMerchantOrderNo'><br>
+          Amt,訂單金額：<input type='text' name='Amt' :value='Amt'><br>
+          ItemDesc,商品資訊：<input type='text' name='ItemDesc' value='猴寶商品'><br>
+          Email,付款人電子信箱：<input type='text' name='Email' :value='order.user.email'><br>
+          LoginType,智付通會員：<input type='text' name='LoginType' value='0'><br>
+          <input id="SpgatewaySubmit" type='submit' value='Submit'>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import sha256 from "sha256";
+
   export default {
     data() {
       return {
@@ -103,16 +118,40 @@
         const vm = this;
         const url = `${process.env.VUE_APP_APIPATH}/api/livepower0815/pay/${vm.orderId}`;
         this.$http.post(url).then(res => {
-          this.getOrder();
+          const submitBtn = document.querySelector('#SpgatewaySubmit');
+          submitBtn.click();
         });
       },
-      goHome(){
+      goHome() {
         this.$router.push('/');
       }
+    },
+    computed: {
+      checkV() {
+        const vm = this;
+        const HashKey = 'HashKey=sTXAYhycqzjvzl16obqbbbJvFbwStvJx';
+        const HashIV = "HashIV=RsmWDpQwqKy32AQq";
+        const Amt = Math.floor(vm.order.total);
+        const CheckValue = `${HashKey}&Amt=${Amt}&MerchantID=MS15725412&MerchantOrderNo=${vm.order.id.slice(1)}&TimeStamp=${vm.order.create_at}&Version=1.2&${HashIV}`;
+        
+        return sha256(CheckValue).toUpperCase();
+      },
+      sliceMerchantOrderNo(){
+        const vm = this;
+        let str = vm.order.id;
+        return str.substring(1);
+      },
+      Amt(){
+        const vm = this;
+        return Math.floor(vm.order.total);
+      },
+
+
     },
     created() {
       this.orderId = this.$route.params.orderId;
       this.getOrder();
+
     },
   }
 </script>
