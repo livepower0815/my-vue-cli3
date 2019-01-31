@@ -58,7 +58,7 @@
       getOrderList(page = 1) {
         const vm = this;
         vm.isLoading = true;
-        const api = `${process.env.VUE_APP_APIPATH}/api/livepower0815/admin/orders?page=${page}`;
+        const api = `${process.env.VUE_APP_APIPATH}/api/livepower0815/orders?page=${page}`;
         this.$http.get(api).then(res => {
           vm.orders = res.data.orders;
           vm.pagination = res.data.pagination;
