@@ -10,11 +10,12 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 import './bus';
 import currencyFilter from './filters/currency'
 import VeeValidate from 'vee-validate';
+import zhTWValidate from 'vee-validate/dist/locale/zh_TW.js';
 import dateFormat from './filters/dateFormat';
 
 
-
 Vue.use(VeeValidate);
+VeeValidate.Validator.localize('zh_TW', zhTWValidate);
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 axios.defaults.withCredentials = true;
