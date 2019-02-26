@@ -93,7 +93,12 @@
         vm.isLoading = true;
         this.$http.delete(api).then((res) => {
           this.getCart();
-          vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          // vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          vm.$notify({
+            title: '成功',
+            message: res.data.message,
+            type: 'success'
+          });
           vm.isLoading = false;
         });
       },
@@ -107,12 +112,27 @@
           }
         };
         this.$http.post(api, couponCode).then((res) => {
-          vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          // vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          console.log(res.data.success);
+          if (res.data.success == true) {
+            vm.$notify({
+              title: '成功',
+              message: res.data.message,
+              type: 'success'
+            });
+          } else if (res.data.success == false) {
+            vm.$notify({
+              title: '失敗',
+              message: res.data.message,
+              type: 'error'
+            });
+          }
+
           vm.isLoading = false;
           this.getCart();
         });
       },
-      goCheckout(){
+      goCheckout() {
         this.$router.push('/checkout')
       },
     },

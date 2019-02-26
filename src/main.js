@@ -13,6 +13,12 @@ import VeeValidate from 'vee-validate';
 import zhTWValidate from 'vee-validate/dist/locale/zh_TW.js';
 import dateFormat from './filters/dateFormat';
 
+//引入 ElementUI
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+//使用 ElementUI
+Vue.use(ElementUI);
 
 Vue.use(VeeValidate);
 VeeValidate.Validator.localize('zh_TW', zhTWValidate);

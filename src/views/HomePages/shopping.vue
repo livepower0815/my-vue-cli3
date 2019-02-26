@@ -134,7 +134,12 @@
         };
         this.$http.post(api, cart).then((res) => {
           let masg = item.title + res.data.message;
-          vm.$bus.$emit('messsagePush', masg, 'success');
+          // vm.$bus.$emit('messsagePush', masg, 'success');
+          vm.$notify({
+            title: '成功',
+            message: masg,
+            type: 'success'
+          });
           vm.$bus.$emit('updateCart');
           vm.isLoading = false;
         });

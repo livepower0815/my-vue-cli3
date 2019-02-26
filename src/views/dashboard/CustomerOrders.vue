@@ -243,7 +243,12 @@
           this.getCart();
           $('#productModal').modal('hide');
           let masg = item.title + res.data.message;
-          vm.$bus.$emit('messsagePush', masg, 'success');
+          // vm.$bus.$emit('messsagePush', masg, 'success');
+          vm.$notify({
+            title: '新增成功',
+            message: masg,
+            type: 'success'
+          });
         });
       },
       removeCart(id) {
@@ -252,7 +257,12 @@
         vm.isLoading = true;
         this.$http.delete(api).then((res) => {
           this.getCart();
-          vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          // vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          vm.$notify({
+            title: '刪除成功',
+            message: res.data.message,
+            type: 'success'
+          });
           vm.isLoading = false;
         });
       },

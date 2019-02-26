@@ -134,7 +134,12 @@
           }
         };
         this.$http.post(api, couponCode).then((res) => {
-          vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          // vm.$bus.$emit('messsagePush', res.data.message, 'success');
+          vm.$notify({
+            title: '成功',
+            message: res.data.message,
+            type: 'success'
+          });
           vm.isLoading = false;
           this.getCart();
         });
